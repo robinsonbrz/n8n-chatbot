@@ -24,5 +24,5 @@ jobs:
             cd projects/n8n-chatbot
             git pull origin main
             # docker compose up -d --build
-            # touch ../rob_$(date +%Y%m%d_%H%M%S).txt
+            touch ../n8n_$(date +%Y%m%d_%H%M%S).txt
 
