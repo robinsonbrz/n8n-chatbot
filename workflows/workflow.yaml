@@ -1,0 +1,28 @@
+name: Deploy N8N to VPS
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd projects/n8n-chatbot
+            git pull origin main
+            # docker compose up -d --build
+            # touch ../rob_$(date +%Y%m%d_%H%M%S).txt
+
