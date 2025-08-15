@@ -16,13 +16,16 @@ services:
       - DB_POSTGRESDB_USER=${DB_USER}
       - DB_POSTGRESDB_PASSWORD=${DB_PASSWD}
     ports:
-      - 5678:5678
+      - "0.0.0.0:5678:5678"
     volumes:
       - n8n_storage:/home/node/.n8n
     env_file: .env
     networks:
       - docker-db_rede
+      - n8n-shared
 
 networks:
   docker-db_rede:
+    external: true
+  n8n-shared:
     external: true
